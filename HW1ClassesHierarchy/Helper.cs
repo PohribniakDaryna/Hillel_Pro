@@ -4,26 +4,26 @@
     {
         public static void IncreaseSourceRating(Source source, int rating)
         {
-            int result = source.Rating + rating;
+            int result = source.Rating.RatingNumber + rating;
             Console.WriteLine($"New Rating of \"{source.GetName()}\" is {result}.");
         }
         public static void PrintSourceReview(Source source)
         {
-            Console.WriteLine($"Review of \"{source.GetName()}\" : {source.Review}");
+            Console.WriteLine($"Review of \"{source.GetName()}\" : {source.Review.ReviewMessage}");
         }
 
-        public static void Separate(string message)
+        public static void Separate(string message, int lenght=40)
         {
-            Console.WriteLine("\n" + new string('-', 40) + "\n" + message + "\n" + new string('-', 40));
+            Console.WriteLine("\n" + new string((char)SeparatorEnum.point, lenght) + "\n" + message + "\n" + new string((char)SeparatorEnum.asterisk, lenght));
         }
 
         public static void Run()
         {
             VideoSource videoSource = new("C# Full Course - Learn C# 10 and .NET 6 in 7 hours", "educational video", true, 40);
-            DigitalSource digitalSource = new("Pro C# 10 with .NET 6", "educational book", false, "Andrew Troelsen", "pdf");
+            DigitalSource digitalSource = new("Pro C# 10 with .NET 6", "educational book", false, "Andrew Troelsen", PublicationFormatEnum.pdf);
             OnlineSource onlineSource = new("Explore object oriented programming with classes and objects", "educational article", true, "learn.microsoft.com");
 
-            Separate("Sources:");
+            Separate("Sources:",100);
             videoSource.PrintSource();
             digitalSource.PrintSource();
             onlineSource.PrintSource();

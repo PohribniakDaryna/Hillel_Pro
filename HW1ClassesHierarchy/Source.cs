@@ -6,15 +6,18 @@
         private readonly string description;
         private readonly bool isFreeSourse;
 
+
+       public Review Review { get; set; }
+        public Rating Rating { get; set; }
+
         public Source(string name, string description, bool isFreeSourse)
         {
             this.name = name;
             this.description = description;
             this.isFreeSourse = isFreeSourse;
+            Review = new Review();
+            Rating = new Rating();
         }
-
-        public string Review { get; set; }
-        public int Rating { get; set; }
 
         public virtual string GetName()
         {
@@ -44,17 +47,16 @@
             }
         }
 
-        public void AddSourceReview(string review)
+        public void AddSourceReview(string message)
         {
-
-            Review = review.ToUpper();
+            Review.ReviewMessage = message;
             Console.WriteLine($"Review about \"{this.name}\" is written.");
         }
 
         public void AddSourseRating(int rating)
         {
-            Rating = rating;
-            Console.WriteLine($"Rating of source \"{this.name}\" is {Rating}.");
+            Rating.RatingNumber = rating;
+            Console.WriteLine($"Rating of source \"{this.name}\" is {Rating.RatingNumber}.");
         }
 
         public void OpenSource()
