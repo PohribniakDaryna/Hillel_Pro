@@ -2,7 +2,7 @@
 {
     public interface IReviewSources
     {
-        void AddSourceReview(string review);
-        void AddSourseRating(int rating);
+        void AddSourceReview(string review, Source source);
+        void AddSourseRating(int rating, Source source);
     }
 }

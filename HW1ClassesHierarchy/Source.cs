@@ -1,6 +1,6 @@
 ﻿namespace HW1ClassesHierarchy
 {
-    public abstract class Source : IReviewSources, IAction
+    public abstract class Source : IAction
     {
         private readonly string name;
         private readonly string description;
@@ -45,19 +45,7 @@
             {
                 Console.WriteLine($"Source \"{this.name}\" is not free.");
             }
-        }
-
-        public void AddSourceReview(string message)
-        {
-            Review.ReviewMessage = message;
-            Console.WriteLine($"Review about \"{this.name}\" is written.");
-        }
-
-        public void AddSourseRating(int rating)
-        {
-            Rating.RatingNumber = rating;
-            Console.WriteLine($"Rating of source \"{this.name}\" is {Rating.RatingNumber}.");
-        }
+        }     
 
         public void OpenSource()
         {

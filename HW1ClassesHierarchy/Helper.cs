@@ -19,6 +19,8 @@
 
         public static void Run()
         {
+            Rating rating = new Rating();
+
             VideoSource videoSource = new("C# Full Course - Learn C# 10 and .NET 6 in 7 hours", "educational video", true, 40);
             DigitalSource digitalSource = new("Pro C# 10 with .NET 6", "educational book", false, "Andrew Troelsen", PublicationFormatEnum.pdf);
             OnlineSource onlineSource = new("Explore object oriented programming with classes and objects", "educational article", true, "learn.microsoft.com");
@@ -29,19 +31,19 @@
             onlineSource.PrintSource();
 
             Separate("Review info:");
-            videoSource.AddSourceReview("This source is usefull for education.");
+            rating.AddSourceReview("This source is usefull for education.", videoSource);
             PrintSourceReview(videoSource);
-            digitalSource.AddSourceReview("You can use this book for education!");
+            rating.AddSourceReview("You can use this book for education!", digitalSource);
             PrintSourceReview(digitalSource);
-            onlineSource.AddSourceReview("I recommend this source.");
+            rating.AddSourceReview("I recommend this source.", onlineSource);
             PrintSourceReview(onlineSource);
 
             Separate("Rating info:");
-            videoSource.AddSourseRating(8);
+            rating.AddSourseRating(8, videoSource);
             IncreaseSourceRating(videoSource, 2);
-            digitalSource.AddSourseRating(8);
+            rating.AddSourseRating(8, digitalSource);
             IncreaseSourceRating(digitalSource, 2);
-            onlineSource.AddSourseRating(8);
+            rating.AddSourseRating(8, onlineSource);
             IncreaseSourceRating(onlineSource, 2);
 
             Separate("Possibility of translation info:");
