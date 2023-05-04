@@ -60,7 +60,7 @@
             //task 9
             Console.WriteLine("\n9. Collection of people, whose age is over 20, ordered by age and transformed to dictionary:");
             var peopleWithAgeOver20OrderedByAge = people.Where(person => person.Age > 20)
-                .OrderBy(person => person.Age)
+                .GroupBy(person => person.Age)
                 .ToDictionary(person => new { person.Id, person.Name });
 
 
