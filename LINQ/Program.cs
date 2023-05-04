@@ -8,6 +8,7 @@
             Numbers.DoActionWithArray();
             //task 5-10
             People.DoActionWithPeople();
+            Console.ReadLine();
         }
     }
 }

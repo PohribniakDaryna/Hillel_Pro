@@ -1,4 +1,6 @@
-﻿namespace LINQ
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace LINQ
 {
     public static class People
     {
@@ -13,22 +15,22 @@
                 person(2,"Emilia",7),
                 person(3,"Hanna",92),
                 person(4,"Emma",25),
-                person(5,"Sophia",64),
+                person(5,"Sophia",92),
                 person(6,"Lina",2),
                 person(7,"Ella",16),
                 person(8,"Mila",33),
                 person(9,"Clara",6),
                 person(10,"Lea", 15),
                 person(11,"Noah",40),
-                person(12,"Oliver",57),
-                person(13,"George",21),
+                person(12,"Oliver",40),
+                person(13,"George",22),
                 person(14,"George",16),
-                person(15,"Muhammad",44),
+                person(15,"Muhammad",40),
                 person(16,"Leo",22),
                 person(17,"Harry",17),
                 person(18,"Oscar",6),
                 person(19,"Archie",8),
-                person(20,"Henry",23),
+                person(20,"Henry",22),
             };
             foreach (var item in people)
             {
@@ -61,12 +63,20 @@
             Console.WriteLine("\n9. Collection of people, whose age is over 20, ordered by age and transformed to dictionary:");
             var peopleWithAgeOver20OrderedByAge = people.Where(person => person.Age > 20)
                 .GroupBy(person => person.Age)
-                .ToDictionary(person => new { person.Id, person.Name });
-
+                .Select(group => new
+                {
+                    Age = group.Key,
+                    People = group.ToDictionary(person => new { person.Id, person.Name })
+                });
 
             foreach (var item in peopleWithAgeOver20OrderedByAge)
             {
-                Console.WriteLine($"{item.Key} - age: {item.Value.Age}");
+                Console.WriteLine($"Age {item.Age}: ");
+
+                foreach (var p in item.People)
+                {
+                    Console.WriteLine($"{ p.Value.Name} ");
+                }
             }
 
             //task 10
@@ -78,7 +88,6 @@
         public static Person ReturnELement(this IEnumerable<Person> collection)
         {
             int count = collection.Count();
-            Console.WriteLine(count);
             int index = count - 2;
             if (count > 2)
             {
