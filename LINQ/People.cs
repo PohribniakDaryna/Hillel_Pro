@@ -60,7 +60,7 @@ namespace LINQ
             }
 
             //task 9
-            Console.WriteLine("\n9. Collection of people, whose age is over 20, ordered by age and transformed to dictionary:");
+            Console.WriteLine("\n9. Collection of people, whose age is over 20, grouped by age and transformed to dictionary:");
             var peopleWithAgeOver20OrderedByAge = people.Where(person => person.Age > 20)
                 .GroupBy(person => person.Age)
                 .Select(group => new
