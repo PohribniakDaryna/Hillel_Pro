@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Reflection
+﻿namespace Reflection
 {
     public class TaskItem
     {
+        [DisplayName("Task title")]
         public string? Title { get; set; }
         public string? Description { get; set; }
+        [DisplayName("Task deadline")]
         public DateTime Deadline { get; set; }
     }
 }

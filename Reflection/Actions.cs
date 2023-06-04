@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Reflection
 {
@@ -28,7 +29,10 @@ namespace Reflection
             var properties = taskItem.GetType().GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                serializedString.Append($"{property.Name}:{property.GetValue(taskItem)};");
+                string name = property.Name;
+                var attribute = Attribute.GetCustomAttribute(property, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
+                if (attribute != null) name = attribute.Name;
+                serializedString.Append($"{name}:{property.GetValue(taskItem)};");
             }
             return serializedString.ToString();
         }
@@ -43,14 +47,11 @@ namespace Reflection
             {
                 for (int i = 0; i < propertiesList.Count; i++)
                 {
-                    if (propertiesList[i] == item.Name)
+                    var attribute = Attribute.GetCustomAttribute(item, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
+                    if (propertiesList[i] == item.Name || (attribute != null && propertiesList[i] == attribute.Name))
                     {
                         var realValue = Convert.ChangeType(propertiesList[i + 1], item.PropertyType);
                         item.SetValue(instance, realValue);
-                    }
-                    else
-                    {
-                        continue;
                     }
                 }
             }
